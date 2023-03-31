@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="torte_erstellen" id="torte_erstellen">
+    <p class="topic">Torte</p>
+    <p class="information">Bitte füllen Sie das Formular aus</p>
+    <form method="post" id="torte-erstellen-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="part-i">
+            <div class="first_name">
+                <input type="text" name="vorname" id="vorname" placeholder="Vorname" required>
+            </div>
+            <div class="last_name">
+                <input type="text" name="nachname" id="nachname" placeholder="Nachname" required>
+            </div>
+            <div class="phone">
+                <input type="text" name="telefonnummer" id="telefonnummer" placeholder="Telefonnummer" required>
+            </div>
+            <div class="mail">
+                <input type="mail" name="mail" id="mail" placeholder="E-Mail" required>
+            </div>
+            <div class="deadline">
+                <p class="frage">Wann möchten Sie die Torte abholen?</p>
+                <p class="info">(Min. 1 Tag nach der Bestellung und zwischen 10:00 - 22:00)</p>
+                <div class="deadline-inputs">
+                    <div class="date">
+                        <p class="frage">Datum</p>
+                        <input type="date" name="date" id="date" min="1899-01-01">
+                    </div>
+                    <div class="time">
+                        <p class="frage">Uhrzeit</p>
+                        <input type="time" name="time" id="time" min="10:00:00" max="22:00:00">
+                    </div>
+                </div>
+            </div>
+            <div class="agb">
+                <input type="checkbox" name="agb" id="agb" required>
+                <p>Ich habe die <a target="_blank" class="datenschutz-link" href="https://www.mekan-hamburg.de/datenschutz">Datenschutzerklärung</a> gelesen und akzeptiert.</p>
+            </div>
+            <a onclick="nextForm()" class="next-form">Weiter</a>
+        </div>
+        <div class="part-ii display">
+            <a onclick="goBack()" class="zuruck">Zurück zu den Persönlichen Informationen</a>
+            <div class="personenanzahl">
+                <p class="frage">Für wie viele Personen?</p>
+    
+                <input id="personen_anzahl" type="number" value="5" min="5" name="personen_anzahl" required>
+            </div>
+            <div class="tortenform">
+                <p class="frage">Form der Torte</p>
+                {% if forms %}
+                {% for form in forms %}
+                <input type="radio" id="tortenform-quadrat" value="{{ form }}" name="tortenform">
+                <label for="tortenform-quadrat">{{ form }}</label>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="stockwerke">
+                <p class="frage">Stockwerke</p>
+                <input type="radio" id="tortenstockwerke-1" value="1" name="stockwerke">
+                <label for="tortenstockwerke-1">1</label>
+                <input type="radio" id="tortenstockwerke-2" value="2" name="stockwerke" disabled>
+                <label for="tortenstockwerke-2">2</label>
+                <input type="radio" id="tortenstockwerke-3" value="3" name="stockwerke" disabled>
+                <label for="tortenstockwerke-3">3</label>
+            </div>
+            <div class="tortentext">
+                <div class="text-bool">
+                    <input type="checkbox" name="text_bool" onclick="viewTextInput()">
+                    <p> Ich möchte eine Beschriftung auf der Torte</p>
+                </div>
+                <div class="text-input">
+                    <p>Inhalt:</p>
+                    <textarea name="text_inhalt" id="text_inhalt" placeholder="Text"></textarea>
+                    <p class="frage">Material vom Text</p>
+                    <input type="radio" id="tortentextmaterial-dunkleschrift" value="Dunkle Schrift" name="tortentext">
+                    <label for="tortentextmaterial-sahne">Dunkle Schrift</label>
+                    <input type="radio" id="tortentextmaterial-helleschrift" value="Helle Schrift" name="tortentext">
+                    <label for="tortentextmaterial-fondant">Helle Schrift</label>
+                </div>
+            </div>
+            <div class="torten-kuchenteig">
+                <p class="frage">Kuchenteig</p>
+                {% for cake_batter in cake_batters %}
+                    <input type="radio" id="kuchenteig-hellerboden-{{cake_batter}}" value="{{cake_batter}}" name="kuchenteig">
+                    <label for="kuchenteig-sahne">{{cake_batter}}</label>
+                {% endfor %}
+            </div>
+            <div class="torten-füllung">
+                <p class="frage">Wählen Sie die Füllung</p>
+                {% for inside in insides %}
+                <input type="radio" id="tortenstockwerke-{{ inside }}" value="{{ inside }}" name="inside">
+                <label for="tortenstockwerke-{{ inside }}">{{ inside }}</label>
+                {% endfor %}
+            </div>
+            <div class="aeussere-creme">
+                <p class="frage">Art der äußeren Schicht</p>
+                {% for outside_content in outside_contents %}
+                <input type="radio" id="aeussere-creme-sahne-{{ outside_content }}" value="{{ outside_content }}"
+                    name="aeussere-creme">
+                <label for="aeussere-creme-sahne-{{ outside_content }}">{{ outside_content }}</label>
+                {% endfor %}
+    
+            </div>
+            <div class="aussenfarbe">
+                <p class="frage">Außenfarbe</p>
+                <div class="options">
+                    {% for outside_colour in outside_colours %}
+                    <div class="option">
+                        <input type="radio" id="aussenfarbe-{{ outside_colour }}" value="{{ outside_colour }}"
+                        name="aussenfarbe">
+                    <label for="aeussere-creme-sahne-{{ outside_colour }}">{{ outside_colour }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <br>
+                <small>Bei spezifischeren Farben bitte bei den Zusätzlichen Infos eingeben.</small>
+            </div>
+            <div class="foto-bool">
+                <input type="checkbox" name="foto_bool" onclick="viewFotoInput()">
+                <p> Ich möchte ein Foto auf der Torte</p>
+            </div>
+            <div class="torten-foto">
+                <input type="file" name="torten-foto" id="torten-foto" accept="image/jpeg, image/png">
+            </div>
+            <div class="foto-bool">
+                <input type="checkbox" name="example_bool" onclick="exampleFotoInput()">
+                <p> Ich habe eine Vorlage für meine Torte</p>
+            </div>
+            <div class="vorlage-foto">
+                <input type="file" name="vorlage-foto" id="vorlage-foto" accept="image/jpeg, image/png">
+            </div>
+            <div class="torten-deko">
+            </div>
+            <div class="torten-info">
+                <p class="frage">Zusätzliche Infos</p>
+                <textarea name="torten-info" id="torten-info" placeholder="Text"></textarea>
+            </div>
+            <button type="submit">Zur Bezahlung</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

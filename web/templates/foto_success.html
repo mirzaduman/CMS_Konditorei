@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="foto">
+    <div class="download">
+        <a  href="{{url}}" download> Baskı Fotoğrafı indir </a>
+        {% if example_url %}
+            <br>
+            <a  href="{{example_url}}" download> Örnek Fotoğrafı indir </a>
+        {% endif %}
+    </div>
+    <form method="post" id="foto-form">
+        {% csrf_token %}
+        <p>Sipariş Numarası</p>
+        <input type="number" name="order_id">
+        <button type="submit">Gönder</button>
+    </form>
+</div>
+{% endblock %}

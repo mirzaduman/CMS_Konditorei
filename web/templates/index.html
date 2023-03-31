@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="torte-home">
+    <p class="title">TORTE</p>
+    <p>Bitte wählen Sie eine Bestellmethode aus</p>
+    <img src="{% static 'img/torten_home.png' %}" alt="torte">
+    <div class="bestellmethoden">
+        <a href="{% url 'tortenkatalog' %}" class="button">Aus dem Katalog auswählen</a>
+        <a href="{% url 'torte_erstellen' %}" class="button">Eigene Torte erstellen</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="foto">
+    <form method="post" id="torte-erstellen-form">
+        {% csrf_token %}
+        <p>Sipariş Numarası</p>
+        <input type="number" name="order_id">
+        <button type="submit">Gönder</button>
+    </form>
+</div>
+{% endblock %}

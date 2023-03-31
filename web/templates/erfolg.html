@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="erfolg">
+    <p class="topic">Torte</p>
+    <img src="{% static 'img/torten_home.png'  %}" alt="torte">
+    <p>Vielen Dank {{ vorname }} {{ nachname }} für die Bestellung. Ihre Bestellungsnummer ist: #{{ order_id }}.</p>
+    <br>
+    <p>Bitte Kontaktieren Sie unsere Mitarbeiterin für die Bezahlung.</p>
+</div>
+{% endblock %}

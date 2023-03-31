@@ -1,0 +1,402 @@
+@font-face {
+    font-family: Poppins400;
+    src: url('../fonts/Poppins-Regular.ttf')
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fcfafa;
+    font-family: Poppins400;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.navbar {
+    height: 62px;
+    width: 100vw;
+    border-bottom: 1px solid #000;
+    display: block;
+}
+
+.navbar img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 16px;
+}
+
+/* .torte-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+.title {
+    font-family: Poppins400;
+    text-transform: uppercase;
+    font-size: 48px;
+    line-height: 60px;
+    margin-left: 12px;
+    margin-bottom: 10px;
+}
+
+/* .torte-home {
+    margin: 0 auto;
+}
+
+.torte-home img {
+    width: 240px;
+} */
+
+
+.torte_main {
+    padding: 0 18px;
+}
+
+.torte_main .options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.torte_main .options img {
+    width: 90%;
+    max-width: 250px;
+    margin: 35px auto;
+}
+
+.torte_main .options a {
+    margin: 15px auto;
+    width: 100%;
+    max-width: 308px;
+}
+
+.torte_erstellen {
+    padding-left: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: Poppins400;
+}
+
+.torte_erstellen form {
+    margin-left: 16px;
+}
+
+.torte_erstellen .information {
+    margin-left: 16px;
+}
+
+
+.torte_erstellen .information {
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.torte_erstellen .frage {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.torte_erstellen .personenanzahl input {
+    width: 48px;
+    height: 30px;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.tortentext {
+    margin-top: 20px;
+}
+
+.tortentext .text-input {
+    margin-top: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.tortentext .text-input.active {
+    margin-top: 8px;
+    height: fit-content;
+}
+
+.torten-foto {
+    margin-top: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.torten-foto.active {
+    margin-top: 8px;
+    height: fit-content;
+}
+
+
+.vorlage-foto {
+    margin-top: 0;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.vorlage-foto.active {
+    margin-top: 8px;
+    height: fit-content;
+}
+
+.text-bool {
+    display: flex;
+    align-items: center;
+}
+
+.text-bool input {
+    margin-right: 4px;
+}
+
+.torte_erstellen textarea {
+    width: 90%;
+    max-width: 500px;
+    font-family: Poppins400;
+    font-size: 14px;
+}
+
+.topic {
+    font-family: Poppins400;
+    text-transform: uppercase;
+    font-size: 48px;
+    line-height: 60px;
+    margin-left: 12px;
+    margin-bottom: 10px;
+}
+
+.foto-bool {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.foto-bool input {
+    margin-right: 6px;
+}
+
+.aussenfarbe .options {
+    max-width: 80%;
+}
+
+.torte_erstellen button {
+    border: 1px solid #747474;
+    width: 90%;
+    max-width: 500px;
+    margin-top: 20px;
+    height: 48px;
+    background-color: #fff;
+    font-family: Poppins400;
+    color: #000;
+    cursor: pointer;
+}
+
+.aussenfarbe .option {
+    white-space: nowrap;
+}
+
+.part-i {
+    margin-top: 30px;
+    transition: all 0.3s ease-in;
+}
+
+.part-i input[type=text]{
+    border: 1px solid #747474;
+    background-color: #FCFAFA;
+    height: 48px;
+    width: 90%;
+    max-width: 343px;
+    font-family: Poppins400;
+    padding-left: 8px;
+    margin-bottom: 24px;
+    font-size: 18px;
+}
+
+.part-i input[type=mail] {
+    border: 1px solid #747474;
+    background-color: #FCFAFA;
+    height: 48px;
+    width: 90%;
+    max-width: 343px;
+    font-family: Poppins400;
+    padding-left: 8px;
+    margin-bottom: 24px;
+    font-size: 18px;
+}
+
+.part-i input[type=text]::placeholder {
+    font-family: Poppins400;
+    color: #747474;
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+
+.part-i input[type=mail]::placeholder {
+    font-family: Poppins400;
+    color: #747474;
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+.display {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+.part-ii {
+    transition: all 0.3s ease-in;
+}
+
+.deadline-inputs {
+    display: flex;
+    margin-left: 25px;
+}
+
+.deadline-inputs *{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.deadline-inputs .frage {
+    margin: 3px 0;
+}
+
+.deadline-inputs input {
+    height: 40px;
+    width: 40vw;
+    max-width: 100px;
+    border: 1px solid #000;
+}
+
+
+.deadline-inputs input::placeholder {
+    margin-left: 10px;
+}
+
+
+.date {
+    margin-right: 40px;
+}
+
+.agb {
+    display: flex;
+    max-width: 80vw;
+    align-items: baseline;
+    margin-top: 16px;
+}
+
+.agb input {
+    margin-right: 12px;
+    height: 25px;
+    width: 25px;
+    transform: translateY(10px);
+}
+
+.agb a {
+    color: #000;
+}
+
+.next-form {
+    display: block;
+    margin: 20px 0 10px 0;
+    width: 75vw;
+    max-width: 343px;
+    max-height: 48px;
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.erfolg {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.erfolg img {
+    margin: 0 auto;
+}
+
+.zuruck {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.info  {
+    margin-bottom: 40px;
+    font-size: 12px;
+}
+
+.foto {
+    /* width: 100vw; */
+    /* height: 100%; */
+    text-align: center;
+    padding-top: 160px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.foto form {
+    display: flex;
+    flex-direction: column;
+}
+
+.foto form input {
+    border: 2px solid #000;
+    width: 300px;
+    height: 60px;
+    margin: 30px 0;
+    font-family: Poppins400;
+    font-size: 42px;
+    text-align: center;
+}
+
+.foto form button {
+    font-family: Poppins400;
+    font-size: 32px;
+    background-color: #000;
+    color: #fff;
+}
+
+.foto .download {
+    font-size: 46px;
+    margin-bottom: 30px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.foto form input::-webkit-outer-spin-button,
+.foto form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.foto form input[type=number] {
+  -moz-appearance: textfield;
+}
